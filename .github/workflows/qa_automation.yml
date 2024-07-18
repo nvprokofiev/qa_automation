@@ -21,17 +21,17 @@ jobs:
       #         reviewers: ['MobileQA']
       #       })
 
-      # - name: Extract Jira ticket number
-      #   id: extract_ticket
-      #   run: |
-      #     TICKET=$(echo "${{ github.event.pull_request.title }}" | grep -oP '^IO-\d+')
-      #     echo "TICKET=$TICKET" >> $GITHUB_OUTPUT
+      - name: Extract Jira ticket number
+        id: extract_ticket
+        run: |
+          TICKET=$(echo "${{ github.event.pull_request.title }}" | grep -oP '^IO-\d+')
+          echo "TICKET=$TICKET" >> $GITHUB_OUTPUT
 
       # - name: Update Jira ticket and set resolution
       #   env:
       #     JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
       #     JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-      #     JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+      #     JIRA_API_TOKEN: ${{ secrets.QA }}
       #     TICKET: ${{ steps.extract_ticket.outputs.TICKET }}
       #   run: |
       #     # Get issue type and transition ID
